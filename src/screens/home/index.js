@@ -9,6 +9,9 @@ export default function Home() {
       case 'Counter':
         navigate('Counter');
         break;
+      case 'UseReducer':
+        navigate('UseReducer');
+        break;
       default:
         navigate('Counter');
     }
@@ -20,7 +23,16 @@ export default function Home() {
         onClick={() => {
           navigateToScreen('Counter');
         }}
+        buttonStyle={styles.buttonStyle}
         textStyle={styles.btnTextStyle}
+      />
+      <Button
+        text={'Use Reducer Example'}
+        onClick={() => {
+          navigateToScreen('UseReducer');
+        }}
+        textStyle={styles.btnTextStyle}
+        buttonStyle={styles.buttonStyle}
       />
     </View>
   );
@@ -29,15 +41,15 @@ const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     justifyContent: 'center',
-    marginHorizontal: 25,
+    marginHorizontal: 50,
   },
   buttonStyle: {
     borderRadius: 10,
-    marginVertical: 20,
+    marginVertical: 5,
     backgroundColor: 'blue',
   },
   btnTextStyle: {
-    fontSize: 25,
+    fontSize: 20,
     textAlign: 'center',
     fontWeight: 'bold',
   },
