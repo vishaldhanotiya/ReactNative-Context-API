@@ -1,4 +1,4 @@
-import React, {useReducer} from 'react';
+import React, {useReducer, useContext} from 'react';
 import {
   View,
   StyleSheet,
@@ -7,27 +7,29 @@ import {
   TouchableOpacity,
   Text,
 } from 'react-native';
-import Button from './Button';
+import Button from '../useCallback/Button';
 import {Color} from '../../common/Color';
 import {Strings} from '../../common/Strings';
-const initialState = {email: '', password: ''};
+import {Context} from '../../context/ContactContext';
+
+const initialState = {name: '', number: ''};
 
 function reducer(state, action) {
-  console.log('Reducer ==', action);
   switch (action.type) {
-    case 'EMAIL':
-      return {...state, email: action.email};
-
-    case 'PASSWORD':
-      return {...state, password: action.password};
+    case 'NAME':
+      return {...state, name: action.name};
+    case 'NUMBER':
+      return {...state, number: action.number};
     case 'RESET':
       return initialState;
   }
 }
 
-export default function UseReducer() {
-  const [state, dispatch] = useReducer(reducer, initialState);
-  const {email, password} = state;
+export default function AddContact() {
+  const [states, dispatch] = useReducer(reducer, initialState);
+  const {name, number} = states;
+
+  const {data: state, addContact} = useContext(Context);
   return (
     <View style={styles.container}>
       {/* <Image style={styles.image} source={require("./assets/log2.png")} /> */}
@@ -36,21 +38,20 @@ export default function UseReducer() {
       <View style={styles.inputView}>
         <TextInput
           style={styles.textInput}
-          placeholder={Strings.email}
+          placeholder={'Name'}
           placeholderTextColor="#003f5c"
-          value={email}
-          onChangeText={email => dispatch({email, type: 'EMAIL'})}
+          value={name}
+          onChangeText={name => dispatch({name, type: 'NAME'})}
         />
       </View>
 
       <View style={styles.inputView}>
         <TextInput
           style={styles.textInput}
-          placeholder={Strings.password}
-          secureTextEntry={true}
-          value={password}
+          placeholder={'Number'}
+          value={number}
           placeholderTextColor="#003f5c"
-          onChangeText={password => dispatch({password, type: 'PASSWORD'})}
+          onChangeText={number => dispatch({number, type: 'NUMBER'})}
         />
       </View>
 
@@ -61,7 +62,13 @@ export default function UseReducer() {
         <Text style={styles.forgotBtn}>{Strings.forgotPassword}</Text>
       </TouchableOpacity>
 
-      <Button text={Strings.login} buttonStyle={styles.loginBtn} />
+      <Button
+        onClick={() => {
+          addContact(name, number);
+        }}
+        text={'Add Contact'}
+        buttonStyle={styles.loginBtn}
+      />
     </View>
   );
 }

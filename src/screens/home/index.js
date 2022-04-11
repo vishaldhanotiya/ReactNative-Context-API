@@ -12,6 +12,12 @@ export default function Home() {
       case 'UseReducer':
         navigate('UseReducer');
         break;
+      case 'UseContext':
+        navigate('UseContext');
+        break;
+      case 'UseContextImprove':
+        navigate('UseContextImprove');
+        break;
       default:
         navigate('Counter');
     }
@@ -30,6 +36,22 @@ export default function Home() {
         text={'Use Reducer Example'}
         onClick={() => {
           navigateToScreen('UseReducer');
+        }}
+        textStyle={styles.btnTextStyle}
+        buttonStyle={styles.buttonStyle}
+      />
+      <Button
+        text={'Use Context Example'}
+        onClick={() => {
+          navigateToScreen('UseContext');
+        }}
+        textStyle={styles.btnTextStyle}
+        buttonStyle={styles.buttonStyle}
+      />
+      <Button
+        text={'Use Context Improve Example'}
+        onClick={() => {
+          navigateToScreen('UseContextImprove');
         }}
         textStyle={styles.btnTextStyle}
         buttonStyle={styles.buttonStyle}

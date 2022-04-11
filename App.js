@@ -8,11 +8,17 @@
 
 import React from 'react';
 import RouteStack from './src/navigation/RouteStack';
+import {BlogProvider} from './src/context';
+import {Provider} from './src/context/ContactContext';
 
 const App = () => {
   return (
     <>
-      <RouteStack />
+      <Provider>
+        <BlogProvider>
+          <RouteStack />
+        </BlogProvider>
+      </Provider>
     </>
   );
 };
