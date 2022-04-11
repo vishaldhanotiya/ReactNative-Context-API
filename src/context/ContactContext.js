@@ -20,8 +20,9 @@ const reducer = (state = [], action) => {
   }
 };
 export const addContact = dispatch => {
-  return (name, number) => {
+  return (name, number, callback) => {
     dispatch({type: 'ADD_CONTACT', payload: {name, number}});
+    callback();
   };
 };
 export const deleteContact = dispatch => {

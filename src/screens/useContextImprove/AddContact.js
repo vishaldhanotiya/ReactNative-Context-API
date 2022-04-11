@@ -11,6 +11,7 @@ import Button from '../useCallback/Button';
 import {Color} from '../../common/Color';
 import {Strings} from '../../common/Strings';
 import {Context} from '../../context/ContactContext';
+import {navigate} from '../../navigation/RootNavigation';
 
 const initialState = {name: '', number: ''};
 
@@ -64,7 +65,9 @@ export default function AddContact() {
 
       <Button
         onClick={() => {
-          addContact(name, number);
+          addContact(name, number, () => {
+            navigate('UseContextImprove');
+          });
         }}
         text={'Add Contact'}
         buttonStyle={styles.loginBtn}
